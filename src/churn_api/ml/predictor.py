@@ -29,6 +29,11 @@ class ChurnPredictor:
         """Metadata of the underlying model (version, metrics, contract)."""
         return self._model.metadata
 
+    @property
+    def decision_threshold(self) -> float:
+        """Probability threshold used to derive the boolean churn class."""
+        return self._threshold
+
     def predict_probabilities(self, records: Sequence[Mapping[str, object]]) -> np.ndarray:
         """Score raw customer records and return churn probabilities.
 

@@ -2,8 +2,13 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
+
 import pandas as pd
 import pytest
+from fastapi.testclient import TestClient
+
+from churn_api.main import create_app
 
 
 def _customer_row(**overrides: object) -> dict[str, object]:
@@ -82,3 +87,10 @@ def raw_customers() -> pd.DataFrame:
         ),
     ]
     return pd.DataFrame(rows)
+
+
+@pytest.fixture(scope="session")
+def api_client() -> Iterator[TestClient]:
+    """HTTP client bound to the real app (real committed model artifact)."""
+    with TestClient(create_app()) as client:
+        yield client

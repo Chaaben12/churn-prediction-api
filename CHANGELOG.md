@@ -30,3 +30,7 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   declared feature contract.
 - Preprocessing pipeline hardened for inference: frames without optional
   columns (e.g. `customerID`) no longer fail transformation.
+- REST API (FastAPI): `POST /predict` (strict validation, explicit 4xx,
+  batch scoring with model-version traceability), `GET /health`,
+  `GET /model/info`, auto-generated OpenAPI docs; domain exceptions mapped
+  to HTTP codes via handlers.
