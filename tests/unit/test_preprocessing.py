@@ -5,7 +5,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import pytest
-from training.preprocessing import (
+
+from churn_api.ml.preprocessing import (
     BINARY_FEATURES,
     CATEGORICAL_FEATURES,
     NUMERIC_FEATURES,

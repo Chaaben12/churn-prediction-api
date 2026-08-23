@@ -27,6 +27,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
+from churn_api.ml.preprocessing import (
+    BINARY_FEATURES,
+    CATEGORICAL_FEATURES,
+    IDENTIFIER_COLUMNS,
+    NUMERIC_FEATURES,
+    TARGET_COLUMN,
+    build_preprocessing_pipeline,
+    encode_target,
+)
 from training.config import (
     DECISION_THRESHOLD,
     DEFAULT_DATA_PATH,
@@ -38,15 +47,6 @@ from training.config import (
     TEST_SIZE,
 )
 from training.evaluate import compute_classification_metrics
-from training.preprocessing import (
-    BINARY_FEATURES,
-    CATEGORICAL_FEATURES,
-    IDENTIFIER_COLUMNS,
-    NUMERIC_FEATURES,
-    TARGET_COLUMN,
-    build_preprocessing_pipeline,
-    encode_target,
-)
 
 ALGORITHMS: Final[tuple[str, ...]] = ("hist_gradient_boosting", "logistic_regression")
 REQUIRED_COLUMNS: Final[frozenset[str]] = frozenset(

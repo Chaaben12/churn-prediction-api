@@ -45,8 +45,18 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   startup.
 - Runtime fix: `scikit-learn` promoted to a core dependency (required to
   unpickle the pipeline; previously only in the `training` group).
-- CI (GitHub Actions): quality job (ruff format + lint, mypy strict,
+ - CI (GitHub Actions): quality job (ruff format + lint, mypy strict,
   pytest with coverage gate) then Docker job (build with GHA cache,
   container boot + live smoke test of `/model/info`, `/predict` and
   validation errors, image-size report in the job summary); images are
   published to GHCR (`:version`, `:latest`) on `v*` tags.
+
+### Fixed
+
+- Container startup failure caught by CI: the serialized pipeline stores
+  functions by reference, so the shared preprocessing module moved from
+  `training/preprocessing.py` to `src/churn_api/ml/preprocessing.py`
+  (the serving package ships inside the image; the offline tree does not).
+  The offline flow now imports it from its new home. The blessed artifact
+  was retrained against the new import path — metrics are byte-identical
+  (ROC-AUC 0.8416, recall 0.7834).

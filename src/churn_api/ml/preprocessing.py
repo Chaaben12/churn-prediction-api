@@ -1,8 +1,9 @@
 """Preprocessing pipeline shared by the training and inference flows.
 
-The single source of truth for raw-customer-DataFrame -> feature-matrix.
-The exact object built here is what gets serialized at the end of training
-and reloaded inside the API, which structurally prevents training-serving
+This module lives in the serving package because the serialized artifact
+stores functions by reference: unpickling the pipeline requires this exact
+import path to exist at inference time. The offline flow imports it from
+here, so both worlds execute literally the same code — no training-serving
 skew. Decisions implemented here are documented in docs/feature-engineering.md.
 """
 
