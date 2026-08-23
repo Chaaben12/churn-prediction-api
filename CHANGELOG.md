@@ -11,3 +11,8 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 - Repository bootstrap: folder structure, tooling configuration (ruff, mypy,
   pytest), README skeleton, MIT license.
+- `scripts/download_data.sh`: reproducible Telco Customer Churn download with
+  pinned SHA256 checksum.
+- EDA dependency group (`uv` lockfile committed for reproducible environments).
+- Exploratory notebook `notebooks/01-eda-exploration.ipynb` (executed) and
+  documented feature engineering decisions in `docs/feature-engineering.md`.

@@ -2,7 +2,7 @@
 
 A production-grade customer churn prediction API — project 1 of an MLOps portfolio.
 
-**Status**: under construction (Étape 0 — repository bootstrap).
+**Status**: under construction (Étape 1 — data preparation done; preprocessing next).
 
 <!-- TODO: badges once CI is in place (Étape 8): CI status, coverage, Python version, license -->
 
@@ -41,7 +41,10 @@ The application is layered: FastAPI routers (API) → business logic (services)
 → model wrapper (ML), with cross-cutting concerns (config, logging, exceptions)
 in `core/`.
 
-Full design rationale: see `docs/architecture.md` (to come).
+Full design rationale:
+
+- [`docs/architecture.md`](docs/architecture.md) (to come)
+- [`docs/feature-engineering.md`](docs/feature-engineering.md)
 
 ## Quickstart
 
@@ -63,7 +66,7 @@ scripts/           Reproducibility helpers (data download, smoke test)
 ## Roadmap
 
 - [x] Étape 0 — Repository bootstrap
-- [ ] Étape 1 — Data preparation and exploration
+- [x] Étape 1 — Data preparation and exploration
 - [ ] Étape 2 — Preprocessing pipeline
 - [ ] Étape 3 — Model training and evaluation
 - [ ] Étape 4 — FastAPI application core
