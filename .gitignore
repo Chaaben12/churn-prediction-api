@@ -24,10 +24,13 @@ htmlcov/
 training/data/*
 !training/data/.gitkeep
 
-# Model artifacts and their metric reports (see models/README.md)
+# Model artifacts and their metric reports - ignored by default;
+# blessed production versions are whitelisted below (see models/README.md)
 models/*.joblib
 models/*.pkl
 models/*.json
+!models/churn_classifier_v0.1.0.joblib
+!models/churn_classifier_v0.1.0_metrics.json
 
 # Notebooks
 .ipynb_checkpoints/

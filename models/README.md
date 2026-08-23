@@ -21,11 +21,14 @@ Regenerate with:
 uv run python -m training.train --algorithm logistic_regression --model-version 0.1.0
 ```
 
-## Why not commit artifacts?
+## Why are artifacts (mostly) not committed?
 
-- Model binaries bloat the repository history and are poor fits for plain git diffs.
-- Artifacts must be reproducible: retraining via `training/train.py` with a fixed
-  seed regenerates them deterministically.
+Artifacts are reproducible: retraining via `training/train.py` with the fixed
+seed regenerates them deterministically, so experiments stay out of git by
+default (`models/*` is gitignored). **Blessed production versions are
+whitelisted explicitly** in `.gitignore`: at ~9 KB the cost is negligible and
+an evaluator gets a working service straight after cloning (design requirement
+NF8), with no LFS or download step.
 
 ## Distribution decision (pending)
 
