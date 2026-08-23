@@ -93,10 +93,7 @@ def build_preprocessing_pipeline() -> Pipeline:
     )
     return Pipeline(
         steps=[
-            (
-                "coerce_types",
-                FunctionTransformer(_coerce_total_charges, feature_names_out="one-to-one"),
-            ),
+            ("coerce_types", FunctionTransformer(_coerce_total_charges)),
             ("features", branches),
         ]
     )

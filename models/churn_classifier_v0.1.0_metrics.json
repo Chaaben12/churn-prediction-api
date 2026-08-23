@@ -11,6 +11,27 @@
     "max_iter": 1000,
     "random_state": 42
   },
+  "input_columns": [
+    "Contract",
+    "Dependents",
+    "DeviceProtection",
+    "InternetService",
+    "MonthlyCharges",
+    "MultipleLines",
+    "OnlineBackup",
+    "OnlineSecurity",
+    "PaperlessBilling",
+    "Partner",
+    "PaymentMethod",
+    "PhoneService",
+    "SeniorCitizen",
+    "StreamingMovies",
+    "StreamingTV",
+    "TechSupport",
+    "TotalCharges",
+    "gender",
+    "tenure"
+  ],
   "metrics": {
     "average_precision": 0.6326487531063157,
     "confusion_matrix": {
@@ -30,5 +51,5 @@
   "random_seed": 42,
   "sklearn_version": "1.9.0",
   "test_size": 0.2,
-  "trained_at_utc": "2026-08-23T11:47:08.379576+00:00"
+  "trained_at_utc": "2026-08-23T12:26:45.004071+00:00"
 }

@@ -196,6 +196,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "random_seed": RANDOM_SEED,
         "test_size": TEST_SIZE,
         "decision_threshold": DECISION_THRESHOLD,
+        "input_columns": sorted(set(REQUIRED_COLUMNS) - {TARGET_COLUMN} - set(IDENTIFIER_COLUMNS)),
         "dataset": {
             "path": str(args.data_path),
             "sha256": sha256_of(args.data_path),
