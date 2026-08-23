@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
 
@@ -107,3 +108,18 @@ def test_openapi_document_is_generated(api_client: TestClient) -> None:
     assert "/predict" in paths
     assert "/health" in paths
     assert "/model/info" in paths
+
+
+def test_startup_aborts_when_model_cannot_load(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import churn_api.main as main_module
+    from churn_api.core.exceptions import ModelNotFoundError
+
+    def _boom(*args: object, **kwargs: object) -> object:
+        raise ModelNotFoundError("artifact absent")
+
+    monkeypatch.setattr(main_module, "load_model", _boom)
+
+    with pytest.raises(ModelNotFoundError), TestClient(main_module.create_app()):
+        pass

@@ -6,6 +6,7 @@ import json
 import shutil
 from pathlib import Path
 
+import joblib
 import pytest
 
 from churn_api.core.exceptions import ModelLoadError, ModelNotFoundError
@@ -46,3 +47,47 @@ def test_incomplete_metadata_raises_model_load_error(tmp_path: Path) -> None:
 
     with pytest.raises(ModelLoadError, match="missing fields"):
         load_model(ARTIFACT, report)
+
+
+def test_malformed_json_metadata_raises_model_load_error(tmp_path: Path) -> None:
+    report = tmp_path / "broken.json"
+    report.write_text("{not valid json", encoding="utf-8")
+
+    with pytest.raises(ModelLoadError, match="not valid JSON"):
+        load_model(ARTIFACT, report)
+
+
+def test_non_object_metadata_raises_model_load_error(tmp_path: Path) -> None:
+    report = tmp_path / "array.json"
+    report.write_text("[1, 2, 3]", encoding="utf-8")
+
+    with pytest.raises(ModelLoadError, match="JSON object"):
+        load_model(ARTIFACT, report)
+
+
+def test_wrongly_typed_contract_raises_model_load_error(tmp_path: Path) -> None:
+    payload = json.loads(REPORT.read_text(encoding="utf-8"))
+    payload["input_columns"] = "tenure"
+    report = tmp_path / "bad-contract.json"
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ModelLoadError, match="list of strings"):
+        load_model(ARTIFACT, report)
+
+
+def test_non_string_metadata_value_raises_model_load_error(tmp_path: Path) -> None:
+    payload = json.loads(REPORT.read_text(encoding="utf-8"))
+    payload["trained_at_utc"] = 12345
+    report = tmp_path / "bad-value.json"
+    report.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ModelLoadError, match="trained_at_utc"):
+        load_model(ARTIFACT, report)
+
+
+def test_artifact_without_predict_proba_raises_model_load_error(tmp_path: Path) -> None:
+    not_a_pipeline = tmp_path / "plain.joblib"
+    joblib.dump({"weights": [1, 2, 3]}, not_a_pipeline)
+
+    with pytest.raises(ModelLoadError, match="predict_proba"):
+        load_model(not_a_pipeline, REPORT)

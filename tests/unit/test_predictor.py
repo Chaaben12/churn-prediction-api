@@ -4,13 +4,15 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 from pathlib import Path
+from types import SimpleNamespace
+from typing import cast
 
 import numpy as np
 import pandas as pd
 import pytest
 
 from churn_api.core.exceptions import PredictionError
-from churn_api.ml.model_loader import load_model
+from churn_api.ml.model_loader import LoadedModel, ModelMetadata, load_model
 from churn_api.ml.predictor import ChurnPredictor
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -64,3 +66,27 @@ def test_decide_churn_applies_threshold_inclusively(predictor: ChurnPredictor) -
     decisions = predictor.decide_churn(np.array([0.4999, 0.5, 0.5001]))
 
     assert decisions == [False, True, True]
+
+
+class _ExplodingPipeline:
+    def predict_proba(self, frame: object) -> object:
+        raise RuntimeError("kaboom")
+
+
+def test_inference_failure_is_wrapped_in_prediction_error() -> None:
+    metadata = ModelMetadata(
+        model_version="t",
+        algorithm="X",
+        trained_at_utc="now",
+        sklearn_version="x",
+        input_columns=("tenure",),
+        metrics={},
+    )
+    loaded = cast(
+        LoadedModel,
+        SimpleNamespace(pipeline=_ExplodingPipeline(), metadata=metadata),
+    )
+    predictor = ChurnPredictor(loaded, decision_threshold=0.5)
+
+    with pytest.raises(PredictionError, match="kaboom"):
+        predictor.predict_probabilities([{"tenure": 3}])

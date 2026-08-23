@@ -34,3 +34,7 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   batch scoring with model-version traceability), `GET /health`,
   `GET /model/info`, auto-generated OpenAPI docs; domain exceptions mapped
   to HTTP codes via handlers.
+- Coverage enforcement: pytest-cov wired into the default test run with an
+  80% `fail_under` gate (current: ~99%); end-to-end training CLI test,
+  fail-fast startup test, and full error-path coverage for model loading,
+  inference and HTTP exception mapping.
