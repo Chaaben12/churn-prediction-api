@@ -16,3 +16,5 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 - EDA dependency group (`uv` lockfile committed for reproducible environments).
 - Exploratory notebook `notebooks/01-eda-exploration.ipynb` (executed) and
   documented feature engineering decisions in `docs/feature-engineering.md`.
+- Shared preprocessing pipeline `training/preprocessing.py` (type coercion,
+  zero-imputation of `TotalCharges`, one-hot encoding, scaling) with unit tests.
