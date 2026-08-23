@@ -1,0 +1,38 @@
+# VCS and editor state
+.git/
+.github/
+.vscode/
+.idea/
+
+# Local Python environments and caches
+.venv/
+venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Dev-only trees never shipped in the image
+tests/
+notebooks/
+docs/
+scripts/
+training/
+
+# Models: ship only the blessed artifact pair
+models/*
+!models/churn_classifier_v0.1.0.joblib
+!models/churn_classifier_v0.1.0_metrics.json
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Docs are not needed for the wheel build except README.md
+*.md
+!README.md

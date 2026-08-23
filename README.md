@@ -48,8 +48,48 @@ Full design rationale:
 
 ## Quickstart
 
-TODO — available from Étape 7 (Docker). The goal: `docker build` +
-`docker run` is all an evaluator needs, no hidden manual steps.
+### With Docker (recommended)
+
+```bash
+cp .env.example .env   # optional — sane defaults apply
+docker compose up --build
+```
+
+The service is then available at:
+
+- `http://localhost:8000/docs` — interactive OpenAPI/Swagger UI
+- `http://localhost:8000/health` — liveness probe
+- `http://localhost:8000/model/info` — loaded model metadata
+
+Example prediction:
+
+```bash
+curl -s http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{"customers": [{
+        "gender": "Female", "SeniorCitizen": 0, "Partner": "Yes",
+        "Dependents": "No", "tenure": 24, "PhoneService": "Yes",
+        "MultipleLines": "No", "InternetService": "DSL",
+        "OnlineSecurity": "Yes", "OnlineBackup": "No",
+        "DeviceProtection": "Yes", "TechSupport": "No",
+        "StreamingTV": "No", "StreamingMovies": "Yes",
+        "Contract": "Two year", "PaperlessBilling": "Yes",
+        "PaymentMethod": "Credit card (automatic)",
+        "MonthlyCharges": 65.5, "TotalCharges": 1572.0
+      }]}'
+```
+
+The blessed model artifact is baked into the image, so `docker build` +
+`docker run` is all an evaluator needs — no hidden manual steps.
+
+### Without Docker (local development)
+
+Requires [uv](https://docs.astral.sh/uv/):
+
+```bash
+uv sync --dev
+uv run uvicorn churn_api.main:app --reload
+```
 
 ## Repository layout
 

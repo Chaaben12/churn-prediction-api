@@ -38,3 +38,10 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   80% `fail_under` gate (current: ~99%); end-to-end training CLI test,
   fail-fast startup test, and full error-path coverage for model loading,
   inference and HTTP exception mapping.
+- Docker packaging: multi-stage build (uv-based dependency install in a
+  builder stage, slim runtime without build tools), non-root user,
+  native `HEALTHCHECK`, strict `.dockerignore`; blessed artifact baked
+  into the image. `docker-compose.yml` + `.env.example` for one-command
+  startup.
+- Runtime fix: `scikit-learn` promoted to a core dependency (required to
+  unpickle the pipeline; previously only in the `training` group).

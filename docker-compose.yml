@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    image: churn-prediction-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      CHURN_ENVIRONMENT: ${CHURN_ENVIRONMENT:-local}
+      CHURN_LOG_LEVEL: ${CHURN_LOG_LEVEL:-INFO}
+      CHURN_DECISION_THRESHOLD: ${CHURN_DECISION_THRESHOLD:-0.5}
+    restart: unless-stopped

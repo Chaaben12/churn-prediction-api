@@ -268,6 +268,7 @@ dependencies = [
     { name = "joblib" },
     { name = "pandas" },
     { name = "pydantic-settings" },
+    { name = "scikit-learn" },
     { name = "uvicorn" },
 ]
 
@@ -300,6 +301,7 @@ requires-dist = [
     { name = "joblib", specifier = ">=1.4" },
     { name = "pandas", specifier = ">=3.0" },
     { name = "pydantic-settings", specifier = ">=2.7" },
+    { name = "scikit-learn", specifier = ">=1.6" },
     { name = "uvicorn", specifier = ">=0.32" },
 ]
 
