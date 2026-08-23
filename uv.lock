@@ -241,6 +241,7 @@ eda = [
     { name = "pandas" },
 ]
 training = [
+    { name = "joblib" },
     { name = "pandas" },
     { name = "scikit-learn" },
 ]
@@ -264,6 +265,7 @@ eda = [
     { name = "pandas", specifier = ">=3.0" },
 ]
 training = [
+    { name = "joblib", specifier = ">=1.4" },
     { name = "pandas", specifier = ">=3.0" },
     { name = "scikit-learn", specifier = ">=1.6" },
 ]
