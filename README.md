@@ -68,7 +68,7 @@ scripts/           Reproducibility helpers (data download, smoke test)
 - [x] Étape 0 — Repository bootstrap
 - [x] Étape 1 — Data preparation and exploration
 - [x] Étape 2 — Preprocessing pipeline
-- [ ] Étape 3 — Model training and evaluation
+- [x] Étape 3 — Model training and evaluation
 - [ ] Étape 4 — FastAPI application core
 - [ ] Étape 5 — API endpoints and schemas
 - [ ] Étape 6 — Unit and integration tests (coverage ≥ 80%)

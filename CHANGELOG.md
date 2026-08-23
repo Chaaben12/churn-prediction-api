@@ -18,3 +18,8 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   documented feature engineering decisions in `docs/feature-engineering.md`.
 - Shared preprocessing pipeline `training/preprocessing.py` (type coercion,
   zero-imputation of `TotalCharges`, one-hot encoding, scaling) with unit tests.
+- Reproducible training CLI `training/train.py` (stratified seeded split,
+  pluggable algorithm) and evaluation module `training/evaluate.py`
+  (ROC-AUC, average precision, recall, precision, F1, confusion matrix).
+- First versioned model artifact `churn_classifier_v0.1.0` (logistic
+  regression selected over gradient boosting on ROC-AUC/recall).
