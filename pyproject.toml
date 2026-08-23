@@ -19,6 +19,14 @@ dev = [
     "ruff>=0.8",
     "mypy>=1.13",
 ]
+eda = [
+    "pandas>=3.0",
+    "matplotlib>=3.9",
+    "nbformat>=5.10",
+    "nbclient>=0.10",
+    "ipykernel>=6.29",
+    "nbconvert>=7.16",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/churn_api"]
