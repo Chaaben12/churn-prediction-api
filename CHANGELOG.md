@@ -45,3 +45,8 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   startup.
 - Runtime fix: `scikit-learn` promoted to a core dependency (required to
   unpickle the pipeline; previously only in the `training` group).
+- CI (GitHub Actions): quality job (ruff format + lint, mypy strict,
+  pytest with coverage gate) then Docker job (build with GHA cache,
+  container boot + live smoke test of `/model/info`, `/predict` and
+  validation errors, image-size report in the job summary); images are
+  published to GHCR (`:version`, `:latest`) on `v*` tags.

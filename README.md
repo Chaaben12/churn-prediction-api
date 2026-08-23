@@ -4,7 +4,7 @@ A production-grade customer churn prediction API — project 1 of an MLOps portf
 
 **Status**: under construction (Étape 1 — data preparation done; preprocessing next).
 
-<!-- TODO: badges once CI is in place (Étape 8): CI status, coverage, Python version, license -->
+[![CI](https://github.com/Chaaben12/churn-prediction-api/actions/workflows/ci.yml/badge.svg)](https://github.com/Chaaben12/churn-prediction-api/actions/workflows/ci.yml)
 
 ## Overview
 
