@@ -5,7 +5,7 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.1.0] - 2026-08-23
 
 ### Added
 
@@ -50,6 +50,10 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   container boot + live smoke test of `/model/info`, `/predict` and
   validation errors, image-size report in the job summary); images are
   published to GHCR (`:version`, `:latest`) on `v*` tags.
+- Final documentation: `docs/architecture.md` (layers, artifact contract,
+  request lifecycle), `docs/final-review.md` (requirement-by-requirement
+  compliance incl. NF3 deviation rationale), `Makefile`, README quickstart,
+  badges and model-card summary.
 
 ### Fixed
 
