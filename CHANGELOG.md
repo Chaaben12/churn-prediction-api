@@ -23,3 +23,10 @@ and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html
   (ROC-AUC, average precision, recall, precision, F1, confusion matrix).
 - First versioned model artifact `churn_classifier_v0.1.0` (logistic
   regression selected over gradient boosting on ROC-AUC/recall).
+- Application core: typed settings (`pydantic-settings`, `CHURN_*` env vars),
+  structured JSON logging, domain exceptions.
+- Inference layer: cached model loader (artifact + metrics report loaded once)
+  and `ChurnPredictor` wrapper validating payloads against the model's own
+  declared feature contract.
+- Preprocessing pipeline hardened for inference: frames without optional
+  columns (e.g. `customerID`) no longer fail transformation.

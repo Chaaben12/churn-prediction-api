@@ -69,7 +69,7 @@ scripts/           Reproducibility helpers (data download, smoke test)
 - [x] Étape 1 — Data preparation and exploration
 - [x] Étape 2 — Preprocessing pipeline
 - [x] Étape 3 — Model training and evaluation
-- [ ] Étape 4 — FastAPI application core
+- [x] Étape 4 — FastAPI application core
 - [ ] Étape 5 — API endpoints and schemas
 - [ ] Étape 6 — Unit and integration tests (coverage ≥ 80%)
 - [ ] Étape 7 — Dockerization (multi-stage image < 300 MB)
