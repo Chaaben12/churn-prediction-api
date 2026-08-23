@@ -112,8 +112,8 @@ scripts/           Reproducibility helpers (data download, smoke test)
 - [x] Étape 4 — FastAPI application core
 - [x] Étape 5 — API endpoints and schemas
 - [x] Étape 6 — Unit and integration tests (coverage ≥ 80%)
-- [ ] Étape 7 — Dockerization (multi-stage image < 300 MB)
-- [ ] Étape 8 — CI/CD with GitHub Actions
+- [x] Étape 7 — Dockerization (multi-stage image, 330 MB measured in CI)
+- [x] Étape 8 — CI/CD with GitHub Actions
 - [ ] Étape 9 — Final README and documentation
 - [ ] Étape 10 — Final review against all requirements
 
